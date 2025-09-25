@@ -1,0 +1,31 @@
+{
+  "name": "pkg-placeholder",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "_description_",
+  "author": "zeevenn <contract@ziven.me>",
+  "license": "MIT",
+  "homepage": "https://github.com/zeevenn/pkg-placeholder#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zeevenn/pkg-placeholder.git"
+  },
+  "bugs": "https://github.com/zeevenn/pkg-placeholder/issues",
+  "keywords": [],
+  "sideEffects": false,
+  "exports": {
+    ".": "./dist/index.mjs"
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "prepublishOnly": "tsdown",
+    "start": "tsx src/index.ts"
+  }
+}

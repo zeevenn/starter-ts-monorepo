@@ -1,0 +1,19 @@
+packages:
+  - packages/*
+
+catalogs:
+  dev:
+    '@types/node': ^24.5.2
+    '@zeevenn/eslint-config': ^0.2.2
+    eslint: ^9.36.0
+    lint-staged: ^16.2.0
+    simple-git-hooks: ^2.13.1
+    tsdown: ^0.15.4
+    tsx: ^4.20.5
+    typescript: ^5.9.2
+    vite: ^7.1.7
+    vitest: ^3.2.4
+
+onlyBuiltDependencies:
+  - esbuild
+  - simple-git-hooks

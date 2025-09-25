@@ -1,0 +1,36 @@
+{
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.17.0",
+  "scripts": {
+    "build": "nr -r build",
+    "dev": "nr -r dev",
+    "lint": "eslint --cache .",
+    "prepublishOnly": "nr build",
+    "docs": "pnpm -C docs run docs:dev",
+    "docs:build": "pnpm -C docs run docs:build",
+    "release": "bumpp -r && pnpm -r publish",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
+    "prepare": "simple-git-hooks"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:dev",
+    "@zeevenn/eslint-config": "catalog:dev",
+    "eslint": "catalog:dev",
+    "lint-staged": "catalog:dev",
+    "simple-git-hooks": "catalog:dev",
+    "tsdown": "catalog:dev",
+    "tsx": "catalog:dev",
+    "typescript": "catalog:dev",
+    "vite": "catalog:dev",
+    "vitest": "catalog:dev"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
+  }
+}
