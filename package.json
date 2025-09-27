@@ -4,18 +4,26 @@
   "private": true,
   "packageManager": "pnpm@10.17.0",
   "scripts": {
-    "build": "nr -r build",
-    "dev": "nr -r dev",
+    "build": "pnpm -r build",
+    "dev": "pnpm -r dev",
     "lint": "eslint --cache .",
-    "prepublishOnly": "nr build",
-    "docs": "pnpm -C docs run docs:dev",
+    "prepublishOnly": "pnpm build",
+    "docs": "pnpm -C docs",
+    "docs:dev": "pnpm -C docs run docs:dev",
     "docs:build": "pnpm -C docs run docs:build",
-    "release": "bumpp -r && pnpm -r publish",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
-    "prepare": "simple-git-hooks"
+    "prepare": "simple-git-hooks",
+    "changeset": "changeset",
+    "changeset:version": "changeset version",
+    "changeset:publish": "pnpm run build && changeset publish",
+    "changeset:status": "changeset status --verbose",
+    "changeset:pre": "changeset pre enter",
+    "changeset:exit": "changeset pre exit"
   },
   "devDependencies": {
+    "@changesets/changelog-github": "catalog:dev",
+    "@changesets/cli": "catalog:dev",
     "@types/node": "catalog:dev",
     "@zeevenn/eslint-config": "catalog:dev",
     "eslint": "catalog:dev",
@@ -24,7 +32,6 @@
     "tsdown": "catalog:dev",
     "tsx": "catalog:dev",
     "typescript": "catalog:dev",
-    "vite": "catalog:dev",
     "vitest": "catalog:dev"
   },
   "simple-git-hooks": {
