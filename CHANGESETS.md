@@ -1,81 +1,72 @@
-# Changesets 使用指南
+# Changesets Guide
 
-本项目使用 [Changesets](https://github.com/changesets/changesets) 来管理版本和发布。
+This project uses [Changesets](https://github.com/changesets/changesets) to manage version and publish.
 
-## 🚀 快速开始
+## 🚀 Quick Start
 
-### 1. 创建 Changeset
+### 1. Create Changeset
 
-当您做出需要发布的更改时，运行：
+When you make changes that need to be published, run:
 
 ```bash
 pnpm changeset
 ```
 
-这将启动交互式流程，询问：
-- 哪些包受到了影响
-- 更改的类型（major、minor、patch）
-- 更改的描述
+This will start an interactive process, asking:
+- Which packages were affected
+- The type of change (major, minor, patch)
+- The description of the change
 
-### 2. 提交 Changeset
+### 2. Submit Changeset
 
 ```bash
 git add .changeset/your-changeset-file.md
 git commit -m "feat: your feature description"
 ```
 
-### 3. 发布（维护者）
+### 3. Publish (Maintainer)
 
 ```bash
-# 更新版本号和生成 CHANGELOG
+# Update version and generate CHANGELOG
 pnpm changeset:version
 
-# 发布到 NPM
+# Publish to NPM
 pnpm changeset:publish
 ```
 
-## 📋 可用命令
+## 📋 Available Commands
 
 | 命令 | 描述 |
 |------|------|
-| `pnpm changeset` | 创建新的 changeset |
-| `pnpm changeset:version` | 应用 changesets，更新版本和 CHANGELOG |
-| `pnpm changeset:publish` | 构建并发布包到 NPM |
-| `pnpm changeset:status` | 查看待发布的更改状态 |
-| `pnpm changeset:pre` | 进入预发布模式 |
-| `pnpm changeset:exit` | 退出预发布模式 |
+| `pnpm changeset` | Create a new changeset |
+| `pnpm changeset:version` | Apply changesets, update version and CHANGELOG |
+| `pnpm changeset:publish` | Build and publish packages to NPM |
+| `pnpm changeset:status` | View the status of pending changes |
+| `pnpm changeset:pre` | Enter pre-release mode |
+| `pnpm changeset:exit` | Exit pre-release mode |
 
-## 🔄 版本类型
+## 🔄 Version Types
 
-- **patch** (0.0.X) - 错误修复，向后兼容
-- **minor** (0.X.0) - 新功能，向后兼容
-- **major** (X.0.0) - 破坏性更改，不向后兼容
+- **patch** (0.0.X) - Bug fixes, backward compatible
+- **minor** (0.X.0) - New features, backward compatible
+- **major** (X.0.0) - Breaking changes, not backward compatible
 
-## 🤖 自动化
+## 🤖 Automation
 
-项目配置了 GitHub Actions 来自动化发布流程：
+The project is configured with GitHub Actions to automate the publish process:
 
-1. **PR 检查** - 确保 PR 包含 changeset
-2. **自动发布** - 合并到 main 分支时自动创建发布 PR
-3. **NPM 发布** - 合并发布 PR 时自动发布到 NPM
+1. **PR Check** - Ensure PR contains changeset
+2. **Automatic Publish** - Automatically create a publish PR when merged into main branch
+3. **NPM Publish** - Automatically publish to NPM when merged into main branch
 
-## 📝 最佳实践
+## 📝 Best Practices
 
-1. **每个功能一个 changeset** - 不要将多个不相关的更改放在一个 changeset 中
-2. **清晰的描述** - 写清楚用户需要知道的更改内容
-3. **正确的版本类型** - 仔细选择 patch/minor/major
-4. **及时创建** - 在开发过程中就创建 changeset，不要等到最后
+1. **Each feature one changeset** - Do not put multiple unrelated changes in one changeset
+2. **Clear description** - Write clearly what the user needs to know about the changes
+3. **Correct version type** - Carefully select patch/minor/major
+4. **Create changeset in development** - Do not wait until the end
 
-## 🔧 配置
+## 📚 More Information
 
-配置文件位于 `.changeset/config.json`，包含：
-
-- **changelog** - 使用 GitHub 集成生成 changelog
-- **access** - 包的访问权限（public/restricted）
-- **baseBranch** - 基础分支（main）
-- **repo** - GitHub 仓库地址
-
-## 📚 更多信息
-
-- [Changesets 官方文档](https://github.com/changesets/changesets)
-- [语义化版本规范](https://semver.org/) 
+- [Changesets Official Documentation](https://github.com/changesets/changesets)
+- [Semantic Versioning Specification](https://semver.org/) 
