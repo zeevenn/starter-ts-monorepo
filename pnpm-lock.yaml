@@ -5,7 +5,7 @@ settings:
   excludeLinksFromLockfile: false
 
 catalogs:
-  dev:
+  cli:
     '@antfu/eslint-config':
       specifier: ^6.0.0
       version: 6.0.0
@@ -15,9 +15,6 @@ catalogs:
     '@changesets/cli':
       specifier: ^2.29.7
       version: 2.29.7
-    '@types/node':
-      specifier: ^24.9.1
-      version: 24.9.1
     eslint:
       specifier: ^9.38.0
       version: 9.38.0
@@ -36,46 +33,51 @@ catalogs:
     typescript:
       specifier: ^5.9.3
       version: 5.9.3
+  testing:
     vitest:
       specifier: ^3.2.4
       version: 3.2.4
+  types:
+    '@types/node':
+      specifier: ^24.9.1
+      version: 24.9.1
 
 importers:
 
   .:
     devDependencies:
       '@antfu/eslint-config':
-        specifier: catalog:dev
+        specifier: catalog:cli
         version: 6.0.0(@vue/compiler-sfc@3.5.22)(eslint-plugin-format@1.0.2(eslint@9.38.0(jiti@2.6.0)))(eslint@9.38.0(jiti@2.6.0))(typescript@5.9.3)(vitest@3.2.4(@types/debug@4.1.12)(@types/node@24.9.1)(jiti@2.6.0)(tsx@4.20.6)(yaml@2.8.1))
       '@changesets/changelog-github':
-        specifier: catalog:dev
+        specifier: catalog:cli
         version: 0.5.1
       '@changesets/cli':
-        specifier: catalog:dev
+        specifier: catalog:cli
         version: 2.29.7(@types/node@24.9.1)
       '@types/node':
-        specifier: catalog:dev
+        specifier: catalog:types
         version: 24.9.1
       eslint:
-        specifier: catalog:dev
+        specifier: catalog:cli
         version: 9.38.0(jiti@2.6.0)
       lint-staged:
-        specifier: catalog:dev
+        specifier: catalog:cli
         version: 16.2.5
       simple-git-hooks:
-        specifier: catalog:dev
+        specifier: catalog:cli
         version: 2.13.1
       tsdown:
-        specifier: catalog:dev
+        specifier: catalog:cli
         version: 0.15.9(typescript@5.9.3)
       tsx:
-        specifier: catalog:dev
+        specifier: catalog:cli
         version: 4.20.6
       typescript:
-        specifier: catalog:dev
+        specifier: catalog:cli
         version: 5.9.3
       vitest:
-        specifier: catalog:dev
+        specifier: catalog:testing
         version: 3.2.4(@types/debug@4.1.12)(@types/node@24.9.1)(jiti@2.6.0)(tsx@4.20.6)(yaml@2.8.1)
 
   packages/pkg-example: {}
@@ -1525,9 +1527,6 @@ packages:
     resolution: {integrity: sha512-QZjmEOC+IT1uk6Rx0sX22V6uHWVwbdbxf1faPqJ1QhLdGgsRGCZoyaQBm/piRdJy/D2um6hM1UP7ZEeQ4EkP+Q==}
     engines: {node: '>=18'}
 
-  get-tsconfig@4.10.1:
-    resolution: {integrity: sha512-auHyJ4AgMz7vgS8Hp3N6HXSmlMdUyhSUrfBF16w153rxtLIEOE+HGqaBppczZvnHLqQJfiHotCYpNhl0lUROFQ==}
-
   get-tsconfig@4.12.0:
     resolution: {integrity: sha512-LScr2aNr2FbjAjZh2C6X6BxRx1/x+aTDExct/xyq2XKbYOiG5c0aK7pMsSuyc0brz3ibr/lbQiHD9jzt4lccJw==}
 
@@ -2157,11 +2156,6 @@ packages:
     resolution: {integrity: sha512-3A6sD0WYP7+QrjbfNA2FN3FsOaGGFoekCVgTyypy53gPxhbkCIjtO6YWgdrfM+n/8sI8JeXZOIxsHjMTNxQ4nQ==}
     engines: {node: ^14.0.0 || >=16.0.0}
 
-  semver@7.7.2:
-    resolution: {integrity: sha512-RF0Fw+rO5AMf9MAyaRXI4AV0Ulj5lMHqVxxdSgiVbixSCXoEmmX/jk0CuJw4+3SqroYO9VoUh+HcuJivvtJemA==}
-    engines: {node: '>=10'}
-    hasBin: true
-
   semver@7.7.3:
     resolution: {integrity: sha512-SdsKMrI9TdgjdweUSR9MweHA4EJ8YxHn8DFaDisvhVlUOe4BF1tLD7GAj0lIqWVl+dPb/rExr0Btby5loQm20Q==}
     engines: {node: '>=10'}
@@ -2623,7 +2617,7 @@ snapshots:
       outdent: 0.5.0
       prettier: 2.8.8
       resolve-from: 5.0.0
-      semver: 7.7.2
+      semver: 7.7.3
 
   '@changesets/assemble-release-plan@6.0.9':
     dependencies:
@@ -2632,7 +2626,7 @@ snapshots:
       '@changesets/should-skip-package': 0.1.2
       '@changesets/types': 6.1.0
       '@manypkg/get-packages': 1.1.3
-      semver: 7.7.2
+      semver: 7.7.3
 
   '@changesets/changelog-git@0.2.1':
     dependencies:
@@ -2673,7 +2667,7 @@ snapshots:
       package-manager-detector: 0.2.11
       picocolors: 1.1.1
       resolve-from: 5.0.0
-      semver: 7.7.2
+      semver: 7.7.3
       spawndamnit: 3.0.1
       term-size: 2.2.1
     transitivePeerDependencies:
@@ -2698,7 +2692,7 @@ snapshots:
       '@changesets/types': 6.1.0
       '@manypkg/get-packages': 1.1.3
       picocolors: 1.1.1
-      semver: 7.7.2
+      semver: 7.7.3
 
   '@changesets/get-github-info@0.6.0':
     dependencies:
@@ -4038,10 +4032,6 @@ snapshots:
 
   get-east-asian-width@1.4.0: {}
 
-  get-tsconfig@4.10.1:
-    dependencies:
-      resolve-pkg-maps: 1.0.0
-
   get-tsconfig@4.12.0:
     dependencies:
       resolve-pkg-maps: 1.0.0
@@ -4832,8 +4822,6 @@ snapshots:
       refa: 0.12.1
       regexp-ast-analysis: 0.7.1
 
-  semver@7.7.2: {}
-
   semver@7.7.3: {}
 
   shebang-command@2.0.0:
@@ -4997,7 +4985,7 @@ snapshots:
   tsx@4.20.6:
     dependencies:
       esbuild: 0.25.10
-      get-tsconfig: 4.10.1
+      get-tsconfig: 4.12.0
     optionalDependencies:
       fsevents: 2.3.3
 
