@@ -14,7 +14,7 @@
     "test": "vitest",
     "typecheck": "tsc --noEmit",
     "prepare": "simple-git-hooks",
-    "release": "pnpm run build && changeset publish"
+    "release": "changeset publish"
   },
   "devDependencies": {
     "@antfu/eslint-config": "catalog:cli",
