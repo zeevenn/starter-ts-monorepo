@@ -5,16 +5,15 @@ catalogs:
   dev:
     '@changesets/changelog-github': ^0.5.1
     '@changesets/cli': ^2.29.7
-    '@types/node': ^24.5.2
-    '@zeevenn/eslint-config': ^0.2.2
-    eslint: ^9.36.0
-    lint-staged: ^16.2.0
+    '@types/node': ^24.9.1
+    '@zeevenn/eslint-config': ^0.3.0
+    eslint: ^9.38.0
+    lint-staged: ^16.2.5
     simple-git-hooks: ^2.13.1
-    tsdown: ^0.15.4
-    tsx: ^4.20.5
-    typescript: ^5.9.2
+    tsdown: ^0.15.9
+    tsx: ^4.20.6
+    typescript: ^5.9.3
     vitest: ^3.2.4
 
 onlyBuiltDependencies:
-  - esbuild
   - simple-git-hooks
