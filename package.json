@@ -14,18 +14,13 @@
     "test": "vitest",
     "typecheck": "tsc --noEmit",
     "prepare": "simple-git-hooks",
-    "changeset": "changeset",
-    "changeset:version": "changeset version",
-    "changeset:publish": "pnpm run build && changeset publish",
-    "changeset:status": "changeset status --verbose",
-    "changeset:pre": "changeset pre enter",
-    "changeset:exit": "changeset pre exit"
+    "release": "pnpm run build && changeset publish"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "catalog:dev",
     "@changesets/changelog-github": "catalog:dev",
     "@changesets/cli": "catalog:dev",
     "@types/node": "catalog:dev",
-    "@zeevenn/eslint-config": "catalog:dev",
     "eslint": "catalog:dev",
     "lint-staged": "catalog:dev",
     "simple-git-hooks": "catalog:dev",
