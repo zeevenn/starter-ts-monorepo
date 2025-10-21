@@ -17,17 +17,17 @@
     "release": "pnpm run build && changeset publish"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "catalog:dev",
-    "@changesets/changelog-github": "catalog:dev",
-    "@changesets/cli": "catalog:dev",
-    "@types/node": "catalog:dev",
-    "eslint": "catalog:dev",
-    "lint-staged": "catalog:dev",
-    "simple-git-hooks": "catalog:dev",
-    "tsdown": "catalog:dev",
-    "tsx": "catalog:dev",
-    "typescript": "catalog:dev",
-    "vitest": "catalog:dev"
+    "@antfu/eslint-config": "catalog:cli",
+    "@changesets/changelog-github": "catalog:cli",
+    "@changesets/cli": "catalog:cli",
+    "@types/node": "catalog:types",
+    "eslint": "catalog:cli",
+    "lint-staged": "catalog:cli",
+    "simple-git-hooks": "catalog:cli",
+    "tsdown": "catalog:cli",
+    "tsx": "catalog:cli",
+    "typescript": "catalog:cli",
+    "vitest": "catalog:testing"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"

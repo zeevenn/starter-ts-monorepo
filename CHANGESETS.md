@@ -24,26 +24,13 @@ git add .changeset/your-changeset-file.md
 git commit -m "feat: your feature description"
 ```
 
-### 3. Publish (Maintainer)
+### 3. Push Changeset
 
 ```bash
-# Update version and generate CHANGELOG
-pnpm changeset:version
+git push
 
-# Publish to NPM
-pnpm changeset:publish
+# Then create a PR
 ```
-
-## 📋 Available Commands
-
-| 命令 | 描述 |
-|------|------|
-| `pnpm changeset` | Create a new changeset |
-| `pnpm changeset:version` | Apply changesets, update version and CHANGELOG |
-| `pnpm changeset:publish` | Build and publish packages to NPM |
-| `pnpm changeset:status` | View the status of pending changes |
-| `pnpm changeset:pre` | Enter pre-release mode |
-| `pnpm changeset:exit` | Exit pre-release mode |
 
 ## 🔄 Version Types
 
@@ -69,4 +56,4 @@ The project is configured with GitHub Actions to automate the publish process:
 ## 📚 More Information
 
 - [Changesets Official Documentation](https://github.com/changesets/changesets)
-- [Semantic Versioning Specification](https://semver.org/) 
+- [Semantic Versioning Specification](https://semver.org/)
