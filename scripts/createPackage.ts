@@ -113,16 +113,17 @@ const packageJson = {
         bugs: `https://github.com/${repository?.owner}/${repository?.repo}/issues`,
         keywords: [],
         sideEffects: false,
-        exports: {
-          '.': './dist/index.mjs',
-        },
-        main: './dist/index.mjs',
-        module: './dist/index.mjs',
-        types: './dist/index.d.mts',
-        files: [
-          'dist',
-        ],
       }),
+  exports: {
+    '.': './dist/index.js',
+    './package.json': './package.json',
+  },
+  main: './dist/index.js',
+  module: './dist/index.js',
+  types: './dist/index.d.ts',
+  files: [
+    'dist',
+  ],
   scripts: {
     build: 'tsdown',
     dev: 'tsdown --watch',
