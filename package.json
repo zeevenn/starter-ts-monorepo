@@ -14,12 +14,14 @@
     "test": "vitest",
     "typecheck": "tsc --noEmit",
     "prepare": "simple-git-hooks",
-    "release": "changeset publish"
+    "release": "changeset publish",
+    "create:pkg": "tsx scripts/createPackage.ts"
   },
   "devDependencies": {
     "@antfu/eslint-config": "catalog:cli",
     "@changesets/changelog-github": "catalog:cli",
     "@changesets/cli": "catalog:cli",
+    "@inquirer/prompts": "catalog:cli",
     "@types/node": "catalog:types",
     "eslint": "catalog:cli",
     "lint-staged": "catalog:cli",
