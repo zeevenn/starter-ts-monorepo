@@ -2,7 +2,7 @@ import { execSync } from 'node:child_process'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import process from 'node:process'
-import { input } from '@inquirer/prompts'
+import { confirm, input } from '@inquirer/prompts'
 
 interface RepositoryInfo {
   owner: string
@@ -46,6 +46,11 @@ const name = process.argv[2] ?? await input({
 const description = await input({
   message: 'Enter the description of the package',
   default: '_description_',
+})
+
+const isPrivate = await confirm({
+  message: 'Is the package private?',
+  default: false,
 })
 
 const { name: authorName, email: authorEmail } = getAuthor()
@@ -92,38 +97,52 @@ const packageJson = {
   name,
   type: 'module',
   version: '0.0.0',
+  private: isPrivate,
   description,
   author: `${authorName} <${authorEmail}>`,
   license: 'MIT',
-  homepage: `https://github.com/${repository?.owner}/${repository?.repo}/tree/main/packages/${name}#readme`,
-  repository: {
-    type: 'git',
-    url: `git+https://github.com/${repository?.owner}/${repository?.repo}.git`,
-    directory: `packages/${name}`,
-  },
-  bugs: `https://github.com/${repository?.owner}/${repository?.repo}/issues`,
-  keywords: [],
-  sideEffects: false,
-  exports: {
-    '.': './dist/index.mjs',
-  },
-  main: './dist/index.mjs',
-  module: './dist/index.mjs',
-  types: './dist/index.d.mts',
-  files: [
-    'dist',
-  ],
+  ...(isPrivate
+    ? {}
+    : {
+        homepage: `https://github.com/${repository?.owner}/${repository?.repo}/tree/main/packages/${name}#readme`,
+        repository: {
+          type: 'git',
+          url: `git+https://github.com/${repository?.owner}/${repository?.repo}.git`,
+          directory: `packages/${name}`,
+        },
+        bugs: `https://github.com/${repository?.owner}/${repository?.repo}/issues`,
+        keywords: [],
+        sideEffects: false,
+        exports: {
+          '.': './dist/index.mjs',
+        },
+        main: './dist/index.mjs',
+        module: './dist/index.mjs',
+        types: './dist/index.d.mts',
+        files: [
+          'dist',
+        ],
+      }),
   scripts: {
     build: 'tsdown',
     dev: 'tsdown --watch',
-    prepublishOnly: 'tsdown',
+    ...(isPrivate ? {} : { prepublishOnly: 'tsdown' }),
     start: 'tsx src/index.ts',
   },
 }
 
 writeFileSync(join(packageDir, 'package.json'), JSON.stringify(packageJson, null, 2))
 
-const readmeContent = `# ${name.toUpperCase()}
+const readmeContent = isPrivate
+  ? `# ${name.toUpperCase()}
+
+${description}
+
+## License
+
+[MIT](./LICENSE) License © [${authorName}](https://github.com/${repository?.owner})
+`
+  : `# ${name.toUpperCase()}
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
@@ -135,7 +154,7 @@ ${description}
 
 ## License
 
-[MIT](./LICENSE) License © [${authorName}](https://github.com/${authorEmail})
+[MIT](./LICENSE) License © [${authorName}](https://github.com/${repository?.owner})
 
 <!-- Badges -->
 
