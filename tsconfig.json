@@ -8,11 +8,14 @@
       "pkg-example": ["./packages/pkg-example/src/index.ts"]
     },
     "resolveJsonModule": true,
+    "types": [],
     "strict": true,
     "strictNullChecks": true,
     "noEmit": true,
     "esModuleInterop": true,
     "skipDefaultLibCheck": true,
     "skipLibCheck": true
-  }
+  },
+  "include": ["packages/**/*.ts"],
+  "exclude": ["node_modules"]
 }

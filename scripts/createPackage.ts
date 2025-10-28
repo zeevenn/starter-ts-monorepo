@@ -127,6 +127,7 @@ const packageJson = {
   scripts: {
     build: 'tsdown',
     dev: 'tsdown --watch',
+    typecheck: 'tsc --noEmit',
     ...(isPrivate ? {} : { prepublishOnly: 'tsdown' }),
     start: 'tsx src/index.ts',
   },

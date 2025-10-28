@@ -4,15 +4,15 @@
   "private": true,
   "packageManager": "pnpm@10.18.3",
   "scripts": {
-    "build": "pnpm -r build",
-    "dev": "pnpm -r dev",
+    "build": "pnpm -r --parallel build",
+    "dev": "pnpm -r --parallel dev",
     "lint": "eslint --cache .",
     "prepublishOnly": "pnpm build",
     "docs": "pnpm -C docs",
     "docs:dev": "pnpm -C docs run docs:dev",
     "docs:build": "pnpm -C docs run docs:build",
     "test": "vitest",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "pnpm -r --parallel typecheck",
     "prepare": "simple-git-hooks",
     "release": "changeset publish",
     "create:pkg": "tsx scripts/createPackage.ts"
