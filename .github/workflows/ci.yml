@@ -17,13 +17,6 @@ jobs:
       - uses: ./.github/actions/ci-setup
       - run: pnpm lint
 
-  typecheck:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
-      - uses: ./.github/actions/ci-setup
-      - run: pnpm typecheck
-
   build:
     runs-on: ubuntu-latest
     steps:
@@ -31,9 +24,75 @@ jobs:
       - uses: ./.github/actions/ci-setup
       - run: pnpm build
 
-  test:
+      - name: Upload workspace build
+        uses: actions/upload-artifact@v7
+        with:
+          name: workspace-dist
+          path: |
+            package.json
+            packages/*/dist
+          retention-days: 1
+
+  typecheck:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
       - uses: ./.github/actions/ci-setup
+
+      - name: Restore workspace build
+        uses: actions/download-artifact@v8
+        with:
+          name: workspace-dist
+          path: .
+
+      - run: pnpm typecheck
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: ./.github/actions/ci-setup
+
+      - name: Restore workspace build
+        uses: actions/download-artifact@v8
+        with:
+          name: workspace-dist
+          path: .
+
       - run: pnpm test
+
+  release:
+    name: Release
+    needs:
+      - lint
+      - typecheck
+      - build
+      - test
+    if: >-
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/main' &&
+      vars.NPM_PUBLISH_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    concurrency:
+      group: release-${{ github.ref }}
+      cancel-in-progress: false
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v5
+      - uses: ./.github/actions/ci-setup
+
+      - name: Create Release Pull Request or Publish to NPM
+        uses: changesets/action@v1
+        with:
+          publish: pnpm release
+          commit: 'ci(changesets): version packages'
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true

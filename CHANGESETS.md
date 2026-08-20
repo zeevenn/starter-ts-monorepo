@@ -40,11 +40,15 @@ git push
 
 ## 🤖 Automation
 
-The project is configured with GitHub Actions to automate the publish process:
+The project uses GitHub Actions and Changesets to automate release preparation and publishing:
 
-1. **PR Check** - Ensure PR contains changeset
-2. **Automatic Publish** - Automatically create a publish PR when merged into main branch
-3. **NPM Publish** - Automatically publish to NPM when merged into main branch
+1. **CI checks** - Pull requests run lint, typecheck, build, and test jobs
+2. **Release PR** - Changesets are collected into a release PR after they reach `main`
+3. **NPM publish** - Packages are published only when the release PR is merged
+
+CI does not require every pull request to contain a changeset. Add one for user-visible changes to publishable packages. Documentation, tests, private packages, and internal refactors usually do not need one.
+
+Repository maintainers must configure the `NPM_TOKEN` Actions secret and set the `NPM_PUBLISH_ENABLED` Actions variable to `true` before release automation is enabled.
 
 ## 📝 Best Practices
 

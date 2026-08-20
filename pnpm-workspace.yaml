@@ -1,24 +1,28 @@
+shellEmulator: true
+
+trustPolicy: no-downgrade
 packages:
+  - apps/*
   - packages/*
 
 catalogs:
   cli:
-    '@antfu/eslint-config': ^6.0.0
-    '@changesets/changelog-github': ^0.5.1
-    '@changesets/cli': ^2.29.7
-    '@inquirer/prompts': ^7.9.0
-    eslint: ^9.38.0
-    lint-staged: ^16.2.5
+    '@antfu/eslint-config': ^9.3.0
+    '@changesets/changelog-github': ^1.0.0
+    '@changesets/cli': ^3.0.1
+    '@inquirer/prompts': ^8.6.0
+    eslint: ^10.8.1
+    lint-staged: ^17.3.0
     simple-git-hooks: ^2.13.1
-    tsdown: ^0.15.9
-    tsx: ^4.20.6
-    typescript: ^5.9.3
-
+    tsdown: ^0.22.14
+    tsx: ^4.23.12
+    typescript: ^6.0.3
   testing:
-    vitest: ^3.2.4
-
+    vite: ^8.2.2
+    vitest: ^4.1.11
   types:
-    '@types/node': ^24.9.1
+    '@types/node': ^26.2.0
 
 onlyBuiltDependencies:
+  - esbuild
   - simple-git-hooks

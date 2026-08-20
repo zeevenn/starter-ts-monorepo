@@ -4,15 +4,13 @@
   "private": true,
   "packageManager": "pnpm@10.18.3",
   "scripts": {
-    "build": "pnpm -r --parallel build",
+    "build": "pnpm -r build",
     "dev": "pnpm -r --parallel dev",
     "lint": "eslint --cache .",
     "prepublishOnly": "pnpm build",
-    "docs": "pnpm -C docs",
-    "docs:dev": "pnpm -C docs run docs:dev",
-    "docs:build": "pnpm -C docs run docs:build",
-    "test": "vitest",
-    "typecheck": "pnpm -r --parallel typecheck",
+    "test": "pnpm test:scripts && pnpm -r --if-present test",
+    "test:scripts": "vitest run scripts",
+    "typecheck": "tsc -p tsconfig.json --noEmit && pnpm -r --if-present typecheck",
     "prepare": "simple-git-hooks",
     "release": "changeset publish",
     "create:pkg": "tsx scripts/createPackage.ts"
@@ -29,6 +27,7 @@
     "tsdown": "catalog:cli",
     "tsx": "catalog:cli",
     "typescript": "catalog:cli",
+    "vite": "catalog:testing",
     "vitest": "catalog:testing"
   },
   "simple-git-hooks": {
