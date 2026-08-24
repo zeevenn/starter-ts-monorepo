@@ -88,7 +88,7 @@ jobs:
       - uses: ./.github/actions/ci-setup
 
       - name: Create Release Pull Request or Publish to NPM
-        uses: changesets/action@v1
+        uses: changesets/action@v2
         with:
           publish: pnpm release
           commit: 'ci(changesets): version packages'
