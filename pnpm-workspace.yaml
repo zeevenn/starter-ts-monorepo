@@ -7,21 +7,21 @@ packages:
 
 catalogs:
   cli:
-    '@antfu/eslint-config': ^9.3.0
-    '@changesets/changelog-github': ^1.0.0
-    '@changesets/cli': ^3.0.1
-    '@inquirer/prompts': ^8.6.0
-    eslint: ^10.8.1
-    lint-staged: ^17.3.0
-    simple-git-hooks: ^2.13.1
-    tsdown: ^0.22.14
-    tsx: ^4.23.12
+    '@antfu/eslint-config': ^9.5.1
+    '@changesets/changelog-github': ^1.0.1
+    '@changesets/cli': ^3.0.3
+    '@inquirer/prompts': ^8.7.2
+    eslint: ^10.10.0
+    lint-staged: ^17.5.1
+    simple-git-hooks: ^2.14.0
+    tsdown: ^0.23.0
+    tsx: ^4.23.13
     typescript: ^6.0.3
   testing:
-    vite: ^8.2.2
+    vite: ^8.3.0
     vitest: ^4.1.11
   types:
-    '@types/node': ^26.2.0
+    '@types/node': ^26.5.1
 
 onlyBuiltDependencies:
   - esbuild
